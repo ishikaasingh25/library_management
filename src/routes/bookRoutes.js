@@ -1,5 +1,5 @@
 const express = require('express');
-const { addBook, deleteBook, getAllBooks, borrowBook } = require('../controller/bookController');
+const { addBook, deleteBook, getAllBooks, borrowBook,returnBook } = require('../controller/bookController');
 const { authMiddleware, authorizeRoles } = require('../middleware/authMiddleware');
 const router = express.Router();
 
@@ -8,5 +8,6 @@ router.post('/add', authMiddleware, authorizeRoles('admin'), addBook);  // Only 
 router.delete('/:id', authMiddleware, authorizeRoles('admin'), deleteBook); // Only admin can delete books
 router.get('/', getAllBooks); // All users can view books
 router.post('/:id/borrow', authMiddleware, borrowBook); // Authenticated users can borrow books
+router.post('/:id/return', authMiddleware, returnBook);
 
 module.exports = router;

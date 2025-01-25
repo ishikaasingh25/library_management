@@ -1,0 +1,77 @@
+/* HomePage.css */
+.homepage {
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color:#4CAF50 ;
+  color: white;
+  padding: 10px 20px;
+}
+
+.navbar-brand h2 {
+  margin: 0;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.navbar-links a:hover {
+  text-decoration: underline;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.welcome-section h1 {
+  font-size: 2.5rem;
+}
+
+.welcome-section p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.book-list {
+  margin-top: 40px;
+}
+
+.book-list h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.book-items {
+  list-style-type: none;
+  padding: 0;
+}
+
+.book-item {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.book-item:hover {
+  background-color: #f1f1f1;
+}
+
+.book-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.book-info p {
+  font-size: 1rem;
+  margin: 5px 0;
+}

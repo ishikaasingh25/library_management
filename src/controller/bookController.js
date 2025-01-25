@@ -1,17 +1,25 @@
 const Book = require('../models/bookModel');  // Assuming you have a Book model
 
-// Add a new book
+const { v4: uuidv4 } = require('uuid'); // To generate a unique ID if needed
+
 const addBook = async (req, res) => {
   const { title, author, genre, availableCopies } = req.body;
 
   try {
-    const newBook = new Book({ title, author, genre, availableCopies });
+    const newBook = new Book({
+      title,
+      author,
+      genre,
+      availableCopies,
+      uniqueId: uuidv4() // Ensure unique ID for each book
+    });
     await newBook.save();
     res.status(201).json({ message: 'Book added successfully', book: newBook });
   } catch (error) {
     res.status(500).json({ message: 'Error adding book', error: error.message });
   }
 };
+
 
 // Delete a book
 const deleteBook = async (req, res) => {
@@ -61,4 +69,29 @@ const borrowBook = async (req, res) => {
   }
 };
 
-module.exports = { addBook, deleteBook, getAllBooks, borrowBook };
+const returnBook = async (req, res) => {
+  const { id } = req.params; // Get book ID from request parameters
+
+  try {
+    // Find the book by its ID
+    const book = await Book.findById(id);
+
+    if (!book) {
+      return res.status(404).json({ message: 'Book not found' });
+    }
+
+    // Logic for returning the book (e.g., increase available copies)
+    book.availableCopies += 1; // Increment available copies
+    await book.save(); // Save the updated book record
+
+    res.status(200).json({
+      message: 'Book returned successfully',
+      book,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error returning book', error });
+  }
+};
+
+module.exports = { addBook, deleteBook, getAllBooks, borrowBook,returnBook };

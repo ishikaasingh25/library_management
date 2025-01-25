@@ -5,6 +5,7 @@ const authRoutes = require('./routes/authRoutes');
 const bookRoutes = require('./routes/bookRoutes');
 const userRoutes = require('./routes/userRoutes');
 const errorHandler = require('./middleware/errorHandler'); // Global error handler
+const cors = require('cors');
 
 // Connect to the database
 dbConnect();
@@ -13,7 +14,7 @@ const app = express();
 
 // Middleware
 app.use(express.json()); // Parse JSON bodies
-
+app.use(cors());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
